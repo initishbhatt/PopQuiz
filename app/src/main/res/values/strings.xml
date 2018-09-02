@@ -17,6 +17,10 @@
         answer will add 20 points + seconds left from timer.
         \n\nEg: If a person answers in 4 seconds,
         points to be credited would be 20(Correct answer point) + 6(seconds left before correct answer was selected)</string>
+    <string name="welcome_note">Welcome to POPQUIZ,\nLets Play</string>
+    <string name="name_empty">Player name can\'t be empty</string>
+    <string name="age_error">enter age</string>
+    <string name="gender_error">Specify gender</string>
 
     <!-- quiz screen -->
 

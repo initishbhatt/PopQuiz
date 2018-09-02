@@ -28,6 +28,7 @@ object Version {
     const val timberVersion = "4.6.0"
 
     const val room_version = "1.1.0"
+    const val saripaarVersion = "2.0.3"
 }
 
 
@@ -56,6 +57,7 @@ object Libs {
     val design = "com.android.support:design:${Version.supportVersion}"
     val multidex = "com.android.support:multidex:${Version.multiDescVersion}"
     val supportAnnotation = "com.android.support:support-annotations:${Version.supportVersion}"
+    val saripaar = "com.mobsandgeeks:android-saripaar:${Version.saripaarVersion}"
 }
 
 object Square {

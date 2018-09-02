@@ -23,7 +23,7 @@ class ProfilePresenter @Inject constructor(
 
         fun onSuccess() {
             service.setUserId(userId)
-            view?.openQuiz()
+            view?.openQuizFragment()
         }
 
         fun onError(error: Throwable) {

@@ -11,6 +11,10 @@
         <variable
             name="model"
             type="com.initishbhatt.popquiz.presentation.profile.ProfileBindingModel" />
+
+        <variable
+            name="handler"
+            type="com.initishbhatt.popquiz.presentation.profile.ProfileFormHandler" />
     </data>
 
     <android.support.constraint.ConstraintLayout
@@ -19,90 +23,96 @@
         android:layout_height="match_parent"
         android:background="@color/shrine">
 
-
         <TextView
-            android:id="@+id/user_name_label"
-            android:layout_width="wrap_content"
+            android:id="@+id/welcome_label"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:gravity="center"
             android:padding="@dimen/space_large"
-            android:text="@string/user_name"
-            app:layout_constraintEnd_toStartOf="@+id/user_name_text"
-            app:layout_constraintStart_toStartOf="parent"
+            android:text="@string/welcome_note"
+            android:textStyle="bold"
+            android:typeface="serif"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <EditText
-            android:id="@+id/user_name_text"
-            android:layout_width="0dp"
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/user_name_label"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/enter_player_name"
-            android:inputType="text"
-            android:padding="@dimen/space_large"
-            android:text="@={model.name}"
-            app:layout_constraintBaseline_toBaselineOf="@+id/user_name_label"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/user_name_label" />
+            android:layout_marginEnd="@dimen/space_large"
+            android:layout_marginStart="@dimen/space_large"
+            android:focusable="true"
+            app:errorEnabled="true"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/welcome_label">
 
+            <EditText
+                android:id="@+id/user_name_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/enter_player_name"
+                android:inputType="textWebEmailAddress"
+                android:onTextChanged="@{handler::onTextChanged}"
+                android:text="@={model.name}"
+                android:textColor="@color/black" />
+        </android.support.design.widget.TextInputLayout>
 
-        <TextView
+        <android.support.design.widget.TextInputLayout
             android:id="@+id/age_label"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/space_large"
-            android:text="@string/age"
-            app:layout_constraintBaseline_toBaselineOf="@+id/age_text"
-            app:layout_constraintEnd_toStartOf="@+id/age_text"
-            app:layout_constraintStart_toStartOf="parent" />
+            android:layout_marginEnd="@dimen/space_large"
+            android:layout_marginStart="@dimen/space_large"
+            android:focusable="true"
+            app:errorEnabled="true"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/user_name_label">
 
-        <EditText
-            android:id="@+id/age_text"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:hint="@string/enter_age"
-            android:inputType="number"
-            android:text="@={model.age}"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/age_label"
-            app:layout_constraintTop_toBottomOf="@+id/user_name_text" />
+            <EditText
+                android:id="@+id/age_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/enter_age"
+                android:inputType="number"
+                android:onTextChanged="@{handler::onTextChanged}"
+                android:text="@={model.age}"
+                android:textColor="@color/black" />
+        </android.support.design.widget.TextInputLayout>
 
-
-        <TextView
+        <android.support.design.widget.TextInputLayout
             android:id="@+id/gender_label"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/space_large"
-            android:text="@string/gender"
-            app:layout_constraintBaseline_toBaselineOf="@+id/gender_text"
-            app:layout_constraintEnd_toStartOf="@+id/gender_text"
-            app:layout_constraintStart_toStartOf="parent" />
+            android:layout_marginEnd="@dimen/space_large"
+            android:layout_marginStart="@dimen/space_large"
+            android:focusable="true"
+            app:errorEnabled="true"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/age_label">
 
-        <EditText
-            android:id="@+id/gender_text"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:hint="@string/specify_male_female"
-            android:inputType="number"
-            android:text="@={model.gender}"
-            app:layout_constraintBottom_toTopOf="@id/play_button"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/gender_label"
-            app:layout_constraintTop_toBottomOf="@+id/age_text" />
+            <EditText
+                android:id="@+id/gender_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/enter_player_name"
+                android:inputType="textWebEmailAddress"
+                android:onTextChanged="@{handler::onTextChanged}"
+                android:text="@={model.gender}"
+                android:textColor="@color/black" />
+        </android.support.design.widget.TextInputLayout>
+
 
         <Button
             android:id="@+id/play_button"
             android:layout_width="@dimen/button_width"
             android:layout_height="wrap_content"
-            android:layout_marginTop="100dp"
             android:background="@drawable/bg_button"
             android:enabled="@{model.playerDetailAvailable}"
-            android:onClick="@{()-> presenter.onPlayClick(model)}"
+            android:onClick="@{()-> handler.validate()}"
             android:text="@string/play"
             app:layout_constraintBottom_toTopOf="@id/how_to_play_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/gender_text" />
+            app:layout_constraintTop_toBottomOf="@id/gender_label" />
 
         <Button
             android:id="@+id/high_score_button"

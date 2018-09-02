@@ -30,9 +30,10 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun provideProfileService(userDataDao: UserDataDao
+    fun provideProfileService(userDataDao: UserDataDao,
+                              store: PrefStore
     ): ProfileContract.Service {
-        return ProfileService(userDataDao)
+        return ProfileService(userDataDao, store)
     }
 
     @Singleton
