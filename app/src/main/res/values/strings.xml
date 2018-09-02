@@ -17,8 +17,20 @@
         answer will add 20 points + seconds left from timer.
         \n\nEg: If a person answers in 4 seconds,
         points to be credited would be 20(Correct answer point) + 6(seconds left before correct answer was selected)</string>
+    <string name="welcome_note">Welcome to POPQUIZ,\nLets Play</string>
+    <string name="name_empty">Player name can\'t be empty</string>
+    <string name="age_error">enter age</string>
+    <string name="gender_error">Specify gender</string>
 
     <!-- quiz screen -->
-
+    <string name="score">Score</string>
+    <string name="max_score">150</string>
+    <string name="time">Time</string>
+    <string name="ten">10</string>
+    <string name="dummy_question">The first Buddhist Sangeeti (conference) was held at?</string>
+    <string name="option1">option1</string>
+    <string name="option2">option2</string>
+    <string name="option3">option3</string>
+    <string name="option4">option4</string>
     <!-- high score screen -->
 </resources>

@@ -71,6 +71,9 @@ dependencies {
     //log
     implementation Square.timber
 
+    //form validation
+    implementation Libs.saripaar
+
     // room
     api Aac.room
     api Aac.roomRx

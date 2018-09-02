@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.initishbhatt.popquiz.R
 import com.initishbhatt.popquiz.databinding.FragmentProflieBinding
+import com.initishbhatt.popquiz.presentation.profile.ProfileBindingModel
 import com.initishbhatt.popquiz.presentation.profile.ProfileContract
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
@@ -19,7 +20,9 @@ class ProfileFragment : DaggerFragment(), ProfileContract.View {
 
     @Inject
     lateinit var profilePresenter: ProfileContract.Presenter
+    private var model: ProfileBindingModel = ProfileBindingModel()
     private lateinit var binding: FragmentProflieBinding
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_proflie, container, false)
         return binding.root
@@ -27,12 +30,13 @@ class ProfileFragment : DaggerFragment(), ProfileContract.View {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        profilePresenter.setView(this)
+        profilePresenter.setView(this@ProfileFragment)
+        binding.model = model
         binding.presenter = profilePresenter
     }
 
 
-    override fun openQuiz() {
+    override fun openQuizFragment() {
         val manager = fragmentManager
         val transaction = manager?.beginTransaction()
         transaction?.add(R.id.fragment, QuizFragment())
@@ -50,9 +54,8 @@ class ProfileFragment : DaggerFragment(), ProfileContract.View {
     override fun openHighScoreFragment() {
         val manager = fragmentManager
         val transaction = manager?.beginTransaction()
-        transaction?.add(R.id.fragment, QuizFragment())
+        transaction?.add(R.id.fragment, HighScoreFragment())
         transaction?.disallowAddToBackStack()
         transaction?.commit()
     }
-
 }

@@ -8,7 +8,7 @@ import io.reactivex.Completable
  */
 interface ProfileContract {
     interface View {
-        fun openQuiz()
+        fun openQuizFragment()
         fun openHowToPlayDialog()
         fun openHighScoreFragment()
     }
@@ -22,6 +22,6 @@ interface ProfileContract {
 
     interface Service {
         fun storeUserData(userData: UserDataEntity): Completable
-        fun setUserId(userId: String):String
+        fun setUserId(userId: String)
     }
 }
