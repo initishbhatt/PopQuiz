@@ -1,0 +1,27 @@
+package com.initishbhatt.popquiz.presentation.profile
+
+import com.initishbhatt.popquiz.data.repository.UserDataEntity
+import io.reactivex.Completable
+
+/**
+ * @author nitishbhatt
+ */
+interface ProfileContract {
+    interface View {
+        fun openQuiz()
+        fun openHowToPlayDialog()
+        fun openHighScoreFragment()
+    }
+
+    interface Presenter {
+        fun setView(view: View)
+        fun onPlayClick(model: ProfileBindingModel)
+        fun onHowToPlayClick()
+        fun onHighScoreClick()
+    }
+
+    interface Service {
+        fun storeUserData(userData: UserDataEntity): Completable
+        fun setUserId(userId: String):String
+    }
+}

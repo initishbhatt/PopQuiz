@@ -1,0 +1,92 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion Dependencies.compileSdkVersion
+    defaultConfig {
+        applicationId Dependencies.applicationId
+        minSdkVersion Dependencies.minSdkVersion
+        targetSdkVersion Dependencies.targetSdkVersion
+        versionCode Dependencies.versionCode
+        versionName Dependencies.versionName
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        buildConfigField("String", "BASE_URL", "\"https://api.myjson.com/bins/si1lo/\"")
+        multiDexEnabled true
+        javaCompileOptions {
+            annotationProcessorOptions {
+                includeCompileClasspath false
+            }
+        }
+    }
+    lintOptions {
+        disable 'InvalidPackage'
+    }
+
+    dataBinding {
+        enabled = true
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation Libs.kotlin_std
+    implementation Libs.kotlin_reflect
+    implementation Libs.appcompat
+    implementation Libs.support
+    implementation Libs.constraint_layout
+    implementation Libs.design
+    implementation Libs.multidex
+
+    implementation Square.picasso
+
+    // Network
+    implementation Square.retrofit
+    implementation Square.moshi_retrofit
+    implementation Square.rxadapter
+    implementation Square.moshi
+    implementation Square.moshi_kotlin
+    implementation Square.okhttp
+    implementation Square.okhttp_intercepter
+
+    // RxJava
+    implementation Reactive.rxJava2
+    implementation Reactive.rxAndroid
+    implementation Reactive.rxKotlin
+
+    //log
+    implementation Square.timber
+
+    // room
+    api Aac.room
+    api Aac.roomRx
+    kapt Aac.roomCompiler
+
+    //dagger
+    implementation Di.dagger
+    implementation Di.dagger_android
+    implementation Di.dagger_android_support
+    kapt Di.dagger_compiler
+    kapt Di.dagger_android_processor
+
+    testImplementation TestLibs.junit
+    androidTestImplementation TestLibs.runner
+    testImplementation TestLibs.mockito
+    testImplementation TestLibs.mockito_kotlin
+    androidTestImplementation TestLibs.espresso
+
+}

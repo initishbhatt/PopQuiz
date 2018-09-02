@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">PoPQuiz</string>
+
+    <!--profile screen -->
+    <string name="user_name">User Name</string>
+    <string name="enter_player_name">Enter Player Name</string>
+    <string name="age">Age</string>
+    <string name="enter_age">Enter Age</string>
+    <string name="gender">Gender</string>
+    <string name="specify_male_female">Specify Male/Female</string>
+    <string name="highscores">HighScores</string>
+    <string name="play">Play</string>
+    <string name="how_to_play">how to play</string>
+    <string name="instructions">There is a 10 seconds timer for every question.
+        \n\n
+        Wrong answer or failing to answer in stipulated time will deduct 10 points and correct
+        answer will add 20 points + seconds left from timer.
+        \n\nEg: If a person answers in 4 seconds,
+        points to be credited would be 20(Correct answer point) + 6(seconds left before correct answer was selected)</string>
+
+    <!-- quiz screen -->
+
+    <!-- high score screen -->
+</resources>
