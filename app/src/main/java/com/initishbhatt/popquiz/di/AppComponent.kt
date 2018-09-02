@@ -1,8 +1,6 @@
 package com.initishbhatt.popquiz.di
 
-import android.app.Application
 import com.initishbhatt.popquiz.PopQuizApp
-import dagger.Binds
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjector

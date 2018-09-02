@@ -29,7 +29,7 @@ class ProfilePresenter @Inject constructor(
         fun onError(error: Throwable) {
             Timber.e(error)
         }
-       service.storeUserData(model.toUserEntity(userId))
+        service.storeUserData(model.toUserEntity(userId))
                 .subscribeOn(schedulerProvider.io())
                 .observeOn(schedulerProvider.ui())
                 .subscribe(::onSuccess, ::onError)

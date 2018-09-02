@@ -23,6 +23,14 @@
     <string name="gender_error">Specify gender</string>
 
     <!-- quiz screen -->
-
+    <string name="score">Score</string>
+    <string name="max_score">150</string>
+    <string name="time">Time</string>
+    <string name="ten">10</string>
+    <string name="dummy_question">The first Buddhist Sangeeti (conference) was held at?</string>
+    <string name="option1">option1</string>
+    <string name="option2">option2</string>
+    <string name="option3">option3</string>
+    <string name="option4">option4</string>
     <!-- high score screen -->
 </resources>

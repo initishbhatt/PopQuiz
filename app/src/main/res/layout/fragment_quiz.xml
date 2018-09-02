@@ -1,6 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-</android.support.constraint.ConstraintLayout>
+    <data>
+
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/shrine"
+        android:padding="@dimen/space_large">
+
+        <LinearLayout
+            android:id="@+id/score_container"
+            android:layout_width="@dimen/container_width"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_button"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="@dimen/space_large">
+
+            <TextView
+                android:id="@+id/score_label"
+                style="@style/PrimaryText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/score" />
+
+            <TextView
+                android:id="@+id/score"
+                style="@style/PrimaryText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/max_score" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/timer_container"
+            android:layout_width="@dimen/container_width"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_button"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="@dimen/space_large"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <TextView
+                style="@style/PrimaryText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/time" />
+
+            <TextView
+                android:id="@+id/time"
+                style="@style/PrimaryText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/ten" />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/black"
+            app:layout_constraintTop_toBottomOf="@id/timer_container" />
+
+        <TextView
+            android:id="@+id/question"
+            style="@style/PrimaryText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_large"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/dummy_question" />
+
+        <Button
+            android:id="@+id/option_one"
+            style="@style/PrimaryButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_large"
+            android:hint="@string/option1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/question" />
+
+        <Button
+            android:id="@+id/option_two"
+            style="@style/PrimaryButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_large"
+            android:hint="@string/option2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/question" />
+
+        <Button
+            android:id="@+id/option_three"
+            style="@style/PrimaryButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_large"
+            android:hint="@string/option3"
+            app:layout_constraintTop_toBottomOf="@+id/option_one" />
+
+        <Button
+            android:id="@+id/option_four"
+            style="@style/PrimaryButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_large"
+            android:hint="@string/option4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/option_two" />
+
+
+    </android.support.constraint.ConstraintLayout>
+</layout>

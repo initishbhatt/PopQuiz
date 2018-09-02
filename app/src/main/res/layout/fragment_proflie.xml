@@ -11,10 +11,6 @@
         <variable
             name="model"
             type="com.initishbhatt.popquiz.presentation.profile.ProfileBindingModel" />
-
-        <variable
-            name="handler"
-            type="com.initishbhatt.popquiz.presentation.profile.ProfileFormHandler" />
     </data>
 
     <android.support.constraint.ConstraintLayout
@@ -51,7 +47,6 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/enter_player_name"
                 android:inputType="textWebEmailAddress"
-                android:onTextChanged="@{handler::onTextChanged}"
                 android:text="@={model.name}"
                 android:textColor="@color/black" />
         </android.support.design.widget.TextInputLayout>
@@ -73,7 +68,6 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/enter_age"
                 android:inputType="number"
-                android:onTextChanged="@{handler::onTextChanged}"
                 android:text="@={model.age}"
                 android:textColor="@color/black" />
         </android.support.design.widget.TextInputLayout>
@@ -93,9 +87,8 @@
                 android:id="@+id/gender_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/enter_player_name"
+                android:hint="@string/specify_male_female"
                 android:inputType="textWebEmailAddress"
-                android:onTextChanged="@{handler::onTextChanged}"
                 android:text="@={model.gender}"
                 android:textColor="@color/black" />
         </android.support.design.widget.TextInputLayout>
@@ -103,11 +96,11 @@
 
         <Button
             android:id="@+id/play_button"
+            style="@style/PrimaryButton"
             android:layout_width="@dimen/button_width"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_button"
             android:enabled="@{model.playerDetailAvailable}"
-            android:onClick="@{()-> handler.validate()}"
+            android:onClick="@{()-> presenter.onPlayClick(model)}"
             android:text="@string/play"
             app:layout_constraintBottom_toTopOf="@id/how_to_play_button"
             app:layout_constraintEnd_toEndOf="parent"
@@ -116,9 +109,9 @@
 
         <Button
             android:id="@+id/high_score_button"
+            style="@style/PrimaryButton"
             android:layout_width="@dimen/button_width"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_button"
             android:onClick="@{()-> presenter.onHighScoreClick()}"
             android:text="@string/highscores"
             app:layout_constraintEnd_toEndOf="parent"
@@ -127,9 +120,9 @@
 
         <Button
             android:id="@+id/how_to_play_button"
+            style="@style/PrimaryButton"
             android:layout_width="@dimen/button_width"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_button"
             android:onClick="@{()-> presenter.onHowToPlayClick()}"
             android:text="@string/how_to_play"
             app:layout_constraintEnd_toEndOf="parent"
