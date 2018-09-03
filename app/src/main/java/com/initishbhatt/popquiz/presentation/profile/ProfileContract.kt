@@ -15,6 +15,7 @@ interface ProfileContract {
 
     interface Presenter {
         fun setView(view: View)
+        fun removeView()
         fun onPlayClick(model: ProfileBindingModel)
         fun onHowToPlayClick()
         fun onHighScoreClick()

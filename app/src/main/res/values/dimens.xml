@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--padding and margin-->
     <dimen name="space_large">20dp</dimen>
     <dimen name="space_xlarge">32dp</dimen>
     <dimen name="space_xxlarge">48dp</dimen>
-    <dimen name="button_width">200dp</dimen>
-    <dimen name="container_width">150dp</dimen>
-    <dimen name="text_size_large">20sp</dimen>
     <dimen name="button_padding_horizontal">12dp</dimen>
     <dimen name="button_padding_vertical">12dp</dimen>
+
+    <!--layout width/height-->
+    <dimen name="button_width">200dp</dimen>
+    <dimen name="container_width">150dp</dimen>
+
+    <!--text size-->
+    <dimen name="text_size_large">20sp</dimen>
     <dimen name="button_text">16sp</dimen>
 </resources>

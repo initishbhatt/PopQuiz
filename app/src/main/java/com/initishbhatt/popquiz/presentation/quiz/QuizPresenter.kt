@@ -54,10 +54,18 @@ class QuizPresenter @Inject constructor(
             count < 5 -> startTimer()
             else -> {
                 count = 0
-                view?.showHighScoreFragment()
+                view?.updateScore()
                 compositeDisposable.clear()
             }
         }
+    }
+
+    override fun updateUserScore(score: Int?) {
+        fun success() {
+            view?.openHighScoreFragment()
+        }
+        quizService.updateUserScore(score)
+                .subscribe(::success, Timber::e)
     }
 
     private fun error(error: Throwable) {

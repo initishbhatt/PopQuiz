@@ -69,7 +69,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:hint="@string/ten"
-                android:text="@{model.timer}" />
+                android:text="@{Integer.toString(model.timer)}" />
         </LinearLayout>
 
         <View

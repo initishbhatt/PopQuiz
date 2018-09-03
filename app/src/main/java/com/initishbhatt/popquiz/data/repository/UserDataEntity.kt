@@ -32,8 +32,8 @@ interface UserDataDao {
     @Insert
     fun insertUserData(userDataEntity: UserDataEntity)
 
-    @Query("UPDATE User SET userScore=:score")
-    fun updateUserScore(score: String)
+    @Query("UPDATE User SET userScore=:score WHERE userId=:userId")
+    fun updateUserScore(score: Int,userId: String)
 }
 
 fun ProfileBindingModel.toUserEntity(userId: String) = UserDataEntity(userId = userId,

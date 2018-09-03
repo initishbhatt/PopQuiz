@@ -13,10 +13,11 @@ interface QuizContract {
         fun hideLoading()
         fun displayQuestions(quizDataEntity: List<QuizDataEntity>)
         fun updateTimer(time: Long)
-        fun showHighScoreFragment()
+        fun updateScore()
         fun checkAnswerAndUpdated(text: String)
         fun updateScoreCorrectAnswer()
         fun updateScoreWrongAnswer()
+        fun openHighScoreFragment()
     }
 
     interface Presenter {
@@ -26,11 +27,13 @@ interface QuizContract {
         fun showQuestions()
         fun onOptionClick(view: android.view.View)
         fun verify(text: String, answer: Int, id: Int)
+        fun updateUserScore(score: Int?)
     }
 
     interface Service {
         fun fetchQuestionsFromServer(): Completable
         fun getQuizQuestions(): Single<List<QuizDataEntity>>
         fun verifyAnswer(text: String, answer: Int, id: Int): Single<Boolean>
+        fun updateUserScore(score:Int?): Completable
     }
 }

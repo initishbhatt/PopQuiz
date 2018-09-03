@@ -39,7 +39,7 @@ class ProfileFragment : DaggerFragment(), ProfileContract.View {
     override fun openQuizFragment() {
         val manager = fragmentManager
         val transaction = manager?.beginTransaction()
-        transaction?.add(R.id.fragment, QuizFragment())
+        transaction?.replace(R.id.fragment, QuizFragment())
         transaction?.disallowAddToBackStack()
         transaction?.commit()
     }
@@ -54,8 +54,13 @@ class ProfileFragment : DaggerFragment(), ProfileContract.View {
     override fun openHighScoreFragment() {
         val manager = fragmentManager
         val transaction = manager?.beginTransaction()
-        transaction?.add(R.id.fragment, HighScoreFragment())
+        transaction?.replace(R.id.fragment, HighScoreFragment())
         transaction?.disallowAddToBackStack()
         transaction?.commit()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        profilePresenter.removeView()
     }
 }

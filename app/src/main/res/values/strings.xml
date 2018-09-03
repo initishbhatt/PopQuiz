@@ -32,5 +32,9 @@
     <string name="option2">option2</string>
     <string name="option3">option3</string>
     <string name="option4">option4</string>
+
     <!-- high score screen -->
+    <string name="high_scores">High Scores</string>
+    <string name="player_name">player name</string>
+
 </resources>

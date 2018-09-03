@@ -42,4 +42,8 @@ class ProfilePresenter @Inject constructor(
     override fun onHighScoreClick() {
         view?.openHighScoreFragment()
     }
+
+    override fun removeView() {
+        view = null
+    }
 }

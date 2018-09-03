@@ -22,7 +22,7 @@ class QuizBindingModel : BaseObservable() {
         }
 
     @get:Bindable
-    var timer: String = "0"
+    var timer: Int = 0
         set(value) {
             field = value
             notifyPropertyChanged(BR.timer)
