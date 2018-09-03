@@ -10,14 +10,14 @@
 
         <variable
             name="model"
-            type="com.initishbhatt.popquiz.presentation.profile.ProfileBindingModel" />
+            type="com.initishbhatt.popquiz.view.binding.ProfileBindingModel" />
     </data>
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/shrine">
+        android:background="@color/background">
 
         <TextView
             android:id="@+id/welcome_label"

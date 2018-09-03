@@ -9,6 +9,6 @@
       android:fillType="evenOdd"/>
   <path
       android:pathData="M99,8L99,32L93,38L9,38L3,32L3,8L9,2L93,2L99,8Z"
-      android:fillColor="#c2b25a"
+      android:fillColor="#C2B25A"
       android:fillType="evenOdd"/>
 </vector>

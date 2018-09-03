@@ -5,7 +5,7 @@ import android.arch.persistence.room.Entity
 import android.arch.persistence.room.Insert
 import android.arch.persistence.room.PrimaryKey
 import android.arch.persistence.room.Query
-import com.initishbhatt.popquiz.presentation.profile.ProfileBindingModel
+import com.initishbhatt.popquiz.view.binding.ProfileBindingModel
 import io.reactivex.Single
 
 /**
@@ -32,8 +32,8 @@ interface UserDataDao {
     @Insert
     fun insertUserData(userDataEntity: UserDataEntity)
 
-    @Query("UPDATE User SET userScore=:score")
-    fun updateUserScore(score: String)
+    @Query("UPDATE User SET userScore=:score WHERE userId=:userId")
+    fun updateUserScore(score: Int,userId: String)
 }
 
 fun ProfileBindingModel.toUserEntity(userId: String) = UserDataEntity(userId = userId,

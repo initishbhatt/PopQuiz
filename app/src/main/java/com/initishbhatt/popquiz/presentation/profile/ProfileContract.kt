@@ -1,6 +1,7 @@
 package com.initishbhatt.popquiz.presentation.profile
 
 import com.initishbhatt.popquiz.data.repository.UserDataEntity
+import com.initishbhatt.popquiz.view.binding.ProfileBindingModel
 import io.reactivex.Completable
 
 /**
@@ -15,6 +16,7 @@ interface ProfileContract {
 
     interface Presenter {
         fun setView(view: View)
+        fun removeView()
         fun onPlayClick(model: ProfileBindingModel)
         fun onHowToPlayClick()
         fun onHighScoreClick()

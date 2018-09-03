@@ -27,8 +27,13 @@ class MainActivity : DaggerAppCompatActivity(), MainContract.View {
     private fun openFragment() {
         val manager = supportFragmentManager
         val transaction = manager.beginTransaction()
-        transaction.add(R.id.fragment, ProfileFragment())
+        transaction.replace(R.id.fragment, ProfileFragment())
         transaction.disallowAddToBackStack()
         transaction.commit()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        presenter.removeView()
     }
 }

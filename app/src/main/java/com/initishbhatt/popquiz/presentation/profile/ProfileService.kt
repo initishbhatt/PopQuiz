@@ -10,8 +10,8 @@ import javax.inject.Inject
  * @author nitishbhatt
  */
 class ProfileService @Inject constructor(
-        var userDataDao: UserDataDao,
-        var prefStore: PrefStore
+        private var userDataDao: UserDataDao,
+        private var prefStore: PrefStore
 ) : ProfileContract.Service {
     override fun storeUserData(userData: UserDataEntity): Completable =
             Completable.fromCallable {
@@ -19,6 +19,6 @@ class ProfileService @Inject constructor(
             }
 
     override fun setUserId(userId: String) =
-    prefStore.setUserId(userId)
+            prefStore.setUserId(userId)
 
 }

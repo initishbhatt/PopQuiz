@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import com.initishbhatt.popquiz.R
 import com.initishbhatt.popquiz.data.repository.QuizDataEntity
 import com.initishbhatt.popquiz.databinding.FragmentQuizBinding
-import com.initishbhatt.popquiz.presentation.quiz.QuizBindingModel
+import com.initishbhatt.popquiz.view.binding.QuizBindingModel
 import com.initishbhatt.popquiz.presentation.quiz.QuizContract
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
@@ -39,16 +39,20 @@ class QuizFragment : DaggerFragment(), QuizContract.View {
         quizPresenter.showQuestions()
     }
 
-    override fun showHighScoreFragment() {
+    override fun updateScore() {
+        quizPresenter.updateUserScore(binding.model?.score)
+    }
+
+    override fun openHighScoreFragment() {
         val manager = fragmentManager
         val transaction = manager?.beginTransaction()
-        transaction?.add(R.id.fragment, HighScoreFragment())
+        transaction?.replace(R.id.fragment, HighScoreFragment())
         transaction?.disallowAddToBackStack()
         transaction?.commit()
     }
 
     override fun updateTimer(time: Long) {
-        binding.model?.timer = time.toString()
+        binding.model?.timer = time.toInt()
     }
 
     override fun showLoading() {
@@ -78,12 +82,17 @@ class QuizFragment : DaggerFragment(), QuizContract.View {
     }
 
     override fun updateScoreCorrectAnswer() {
-        binding.model?.score = binding.model?.score!!.plus(20)
+        binding.model?.score = (binding.model?.score!!.plus(20).plus(10.minus(binding.model?.timer!!)))
         quizPresenter.showQuestions()
     }
 
     override fun updateScoreWrongAnswer() {
         binding.model?.score = binding.model?.score!!.minus(10)
         quizPresenter.showQuestions()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        quizPresenter.removeView()
     }
 }

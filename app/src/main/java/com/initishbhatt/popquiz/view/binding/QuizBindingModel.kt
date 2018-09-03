@@ -1,4 +1,4 @@
-package com.initishbhatt.popquiz.presentation.quiz
+package com.initishbhatt.popquiz.view.binding
 
 import android.databinding.BaseObservable
 import android.databinding.Bindable
@@ -22,7 +22,7 @@ class QuizBindingModel : BaseObservable() {
         }
 
     @get:Bindable
-    var timer: String = "0"
+    var timer: Int = 0
         set(value) {
             field = value
             notifyPropertyChanged(BR.timer)

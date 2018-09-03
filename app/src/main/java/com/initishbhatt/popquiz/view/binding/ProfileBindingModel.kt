@@ -1,4 +1,4 @@
-package com.initishbhatt.popquiz.presentation.profile
+package com.initishbhatt.popquiz.view.binding
 
 import android.databinding.BaseObservable
 import android.databinding.Bindable
