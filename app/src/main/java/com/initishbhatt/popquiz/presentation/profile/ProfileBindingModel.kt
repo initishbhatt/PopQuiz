@@ -2,6 +2,7 @@ package com.initishbhatt.popquiz.presentation.profile
 
 import android.databinding.BaseObservable
 import android.databinding.Bindable
+import com.initishbhatt.popquiz.BR
 
 /**
  * @author nitishbhatt
@@ -11,7 +12,7 @@ class ProfileBindingModel : BaseObservable() {
     var name: String = ""
         set(username) {
             field = username
-            notifyChange()
+            notifyPropertyChanged(BR.name)
             isPlayerDetailAvailable = isFieldsSet
 
         }
@@ -19,21 +20,21 @@ class ProfileBindingModel : BaseObservable() {
     var age: String = ""
         set(userage) {
             field = userage
-            notifyChange()
+            notifyPropertyChanged(BR.age)
             isPlayerDetailAvailable = isFieldsSet
         }
     @get:Bindable
     var gender: String = ""
         set(usergender) {
             field = usergender
-            notifyChange()
+            notifyPropertyChanged(BR.gender)
             isPlayerDetailAvailable = isFieldsSet
         }
     @get:Bindable
     var isPlayerDetailAvailable: Boolean = false
         set(detailsAvailable) {
             field = detailsAvailable
-            notifyChange()
+            notifyPropertyChanged(BR.playerDetailAvailable)
         }
 
     private val isFieldsSet: Boolean
