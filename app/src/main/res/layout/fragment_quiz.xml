@@ -5,6 +5,13 @@
 
     <data>
 
+        <variable
+            name="model"
+            type="com.initishbhatt.popquiz.presentation.quiz.QuizBindingModel" />
+
+        <variable
+            name="presenter"
+            type="com.initishbhatt.popquiz.presentation.quiz.QuizContract.Presenter" />
     </data>
 
     <android.support.constraint.ConstraintLayout
@@ -20,7 +27,8 @@
             android:background="@drawable/bg_button"
             android:gravity="center"
             android:orientation="vertical"
-            android:padding="@dimen/space_large">
+            android:padding="@dimen/space_large"
+            android:visibility="@{!model.questionsNotAvailable}">
 
             <TextView
                 android:id="@+id/score_label"
@@ -34,7 +42,8 @@
                 style="@style/PrimaryText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="@string/max_score" />
+                android:hint="@string/max_score"
+                android:text="@{Integer.toString(model.score)}" />
         </LinearLayout>
 
         <LinearLayout
@@ -45,6 +54,7 @@
             android:gravity="center"
             android:orientation="vertical"
             android:padding="@dimen/space_large"
+            android:visibility="@{!model.questionsNotAvailable}"
             app:layout_constraintEnd_toEndOf="parent">
 
             <TextView
@@ -58,7 +68,8 @@
                 style="@style/PrimaryText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="@string/ten" />
+                android:hint="@string/ten"
+                android:text="@{model.timer}" />
         </LinearLayout>
 
         <View
@@ -68,18 +79,29 @@
             android:layout_marginBottom="8dp"
             android:layout_marginTop="8dp"
             android:background="@color/black"
+            android:visibility="@{!model.questionsNotAvailable}"
             app:layout_constraintTop_toBottomOf="@id/timer_container" />
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{model.questionsNotAvailable}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/question"
             style="@style/PrimaryText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_large"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="@dimen/space_xlarge"
+            android:text="@{model.question}"
+            android:visibility="@{!model.questionsNotAvailable}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view"
             tools:text="@string/dummy_question" />
 
         <Button
@@ -89,6 +111,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/space_large"
             android:hint="@string/option1"
+            android:onClick="@{(view) -> presenter.onOptionClick(view)}"
+            android:text="@{model.optionOne}"
+            android:visibility="@{!model.questionsNotAvailable}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/question" />
 
@@ -99,8 +124,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/space_large"
             android:hint="@string/option2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/question" />
+            android:onClick="@{(view) -> presenter.onOptionClick(view)}"
+            android:text="@{model.optionTwo}"
+            android:visibility="@{!model.questionsNotAvailable}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/option_one" />
 
         <Button
             android:id="@+id/option_three"
@@ -109,7 +137,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/space_large"
             android:hint="@string/option3"
-            app:layout_constraintTop_toBottomOf="@+id/option_one" />
+            android:onClick="@{(view) -> presenter.onOptionClick(view)}"
+            android:text="@{model.optionThree}"
+            android:visibility="@{!model.questionsNotAvailable}"
+            app:layout_constraintTop_toBottomOf="@+id/option_two" />
 
         <Button
             android:id="@+id/option_four"
@@ -118,8 +149,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/space_large"
             android:hint="@string/option4"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/option_two" />
+            android:onClick="@{(view) -> presenter.onOptionClick(view)}"
+            android:text="@{model.optionFour}"
+            android:visibility="@{!model.questionsNotAvailable}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/option_three" />
 
 
     </android.support.constraint.ConstraintLayout>

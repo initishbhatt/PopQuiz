@@ -62,6 +62,7 @@ dependencies {
     implementation Square.moshi_kotlin
     implementation Square.okhttp
     implementation Square.okhttp_intercepter
+    implementation Square.retrofitGsonConvertor
 
     // RxJava
     implementation Reactive.rxJava2
@@ -70,9 +71,6 @@ dependencies {
 
     //log
     implementation Square.timber
-
-    //form validation
-    implementation Libs.saripaar
 
     // room
     api Aac.room

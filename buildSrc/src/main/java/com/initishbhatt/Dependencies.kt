@@ -27,7 +27,7 @@ object Version {
     const val okhttpVersion = "3.11.0"
     const val timberVersion = "4.6.0"
 
-    const val room_version = "1.1.0"
+    const val room_version = "1.1.1-rc1"
     const val saripaarVersion = "2.0.3"
 }
 
@@ -57,7 +57,6 @@ object Libs {
     val design = "com.android.support:design:${Version.supportVersion}"
     val multidex = "com.android.support:multidex:${Version.multiDescVersion}"
     val supportAnnotation = "com.android.support:support-annotations:${Version.supportVersion}"
-    val saripaar = "com.mobsandgeeks:android-saripaar:${Version.saripaarVersion}"
 }
 
 object Square {
@@ -67,6 +66,7 @@ object Square {
     val rxadapter = "com.jakewharton.retrofit:retrofit2-rxjava2-adapter:${Version.rxAdapterVersion}"
     val moshi = "com.squareup.moshi:moshi:${Version.moshiVersion}"
     val moshi_kotlin = "com.squareup.moshi:moshi-kotlin:${Version.moshiVersion}"
+    val retrofitGsonConvertor = "com.squareup.retrofit2:converter-gson:${Version.retrofitVersion}"
     val okhttp = "com.squareup.okhttp3:okhttp:${Version.okhttpVersion}"
     val okhttp_intercepter = "com.squareup.okhttp3:logging-interceptor:${Version.okhttpVersion}"
     val timber = "com.jakewharton.timber:timber:${Version.timberVersion}"
