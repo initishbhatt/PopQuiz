@@ -21,7 +21,7 @@ class HighScoreFragment : DaggerFragment(), HighScoreContract.View {
     lateinit var highScorePresenter: HighScoreContract.Presenter
 
     override fun showHighScores(users: List<UserDataEntity>) {
-        (binding.highScoreRv.adapter as HighScoreItemAdapter).showHighScores(users)
+        binding.highScoreRv.adapter = HighScoreItemAdapter(users)
     }
 
     private lateinit var binding: FragmentHighScoreBinding
@@ -36,7 +36,6 @@ class HighScoreFragment : DaggerFragment(), HighScoreContract.View {
         highScorePresenter.setView(this)
         binding.highScoreRv.apply {
             layoutManager = LinearLayoutManager(context)
-            adapter = HighScoreItemAdapter()
         }
     }
 

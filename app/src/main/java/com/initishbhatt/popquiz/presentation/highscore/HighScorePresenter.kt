@@ -1,8 +1,8 @@
 package com.initishbhatt.popquiz.presentation.highscore
 
-import com.initishbhatt.popquiz.data.repository.UserDataDao
 import com.initishbhatt.popquiz.data.repository.UserDataEntity
-import com.initishbhatt.popquiz.util.SchedulerProvider
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.disposables.Disposable
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -10,16 +10,15 @@ import javax.inject.Inject
  * @author nitishbhatt
  */
 class HighScorePresenter @Inject constructor(
-        userDataDao: UserDataDao,
-        schedulerProvider: SchedulerProvider
+        service: HighScoreContract.Service
 ) : HighScoreContract.Presenter {
 
+    private var compositeDisposable = CompositeDisposable()
+
     init {
-        userDataDao.getAllUsers()
-                .map { it }
-                .subscribeOn(schedulerProvider.io())
-                .observeOn(schedulerProvider.ui())
+        service.getUsers()
                 .subscribe(::success, Timber::e)
+                .addToDisposable()
     }
 
     private var view: HighScoreContract.View? = null
@@ -36,5 +35,10 @@ class HighScorePresenter @Inject constructor(
 
     override fun removeView() {
         view = null
+        compositeDisposable.clear()
+    }
+
+    private fun Disposable.addToDisposable() = apply {
+        compositeDisposable.add(this)
     }
 }

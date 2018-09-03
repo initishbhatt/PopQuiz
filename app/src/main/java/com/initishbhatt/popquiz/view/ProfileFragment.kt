@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.initishbhatt.popquiz.R
 import com.initishbhatt.popquiz.databinding.FragmentProflieBinding
-import com.initishbhatt.popquiz.presentation.profile.ProfileBindingModel
+import com.initishbhatt.popquiz.view.binding.ProfileBindingModel
 import com.initishbhatt.popquiz.presentation.profile.ProfileContract
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject

@@ -7,6 +7,6 @@
     <color name="secondary_text">#757575</color>
     <color name="icons">#FFFFFF</color>
     <color name="divider">#BDBDBD</color>
-    <color name="shrine">#FFDBCF</color>
+    <color name="background">#F6E6F0</color>
     <color name="black">#000000</color>
 </resources>

@@ -11,8 +11,9 @@ import kotlinx.android.synthetic.main.item_high_score.view.*
 /**
  * @author nitishbhatt
  */
-class HighScoreItemAdapter : RecyclerView.Adapter<HighScoreItemAdapter.ViewHolder>() {
-    private var highScoreList: List<UserDataEntity> = emptyList()
+class HighScoreItemAdapter(
+        private val highScoreList: List<UserDataEntity>
+) : RecyclerView.Adapter<HighScoreItemAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val root = (LayoutInflater.from(parent.context).inflate(R.layout.item_high_score, parent, false))
         return ViewHolder(root)
@@ -23,12 +24,7 @@ class HighScoreItemAdapter : RecyclerView.Adapter<HighScoreItemAdapter.ViewHolde
     override fun onBindViewHolder(holder: ViewHolder, position: Int) =
             holder.bind(highScoreList[position])
 
-    fun showHighScores(userDataEntity: List<UserDataEntity>) {
-        highScoreList = userDataEntity
-        notifyDataSetChanged()
-    }
-
-    inner class ViewHolder(root: View) : RecyclerView.ViewHolder(root) {
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun bind(userDataEntity: UserDataEntity) = with(itemView) {
             name_label.text = userDataEntity.userName

@@ -38,6 +38,9 @@ class QuizPresenter @Inject constructor(
                 .subscribe()
     }
 
+    /**
+     * Display new question for the quiz
+     */
     override fun showQuestions() {
         compositeDisposable.clear()
         quizService.getQuizQuestions()
@@ -60,6 +63,14 @@ class QuizPresenter @Inject constructor(
         }
     }
 
+    private fun error(error: Throwable) {
+        view?.hideLoading()
+        Timber.e(error)
+    }
+
+    /**
+     * Update scorecard of user and show High Score View after 5 questions
+     */
     override fun updateUserScore(score: Int?) {
         fun success() {
             view?.openHighScoreFragment()
@@ -68,18 +79,18 @@ class QuizPresenter @Inject constructor(
                 .subscribe(::success, Timber::e)
     }
 
-    private fun error(error: Throwable) {
-        view?.hideLoading()
-        Timber.e(error)
-    }
-
-
+    /**
+     * action when user clicks on the given answer choices
+     */
     override fun onOptionClick(view: View) {
         stopTimer()
         count = count.plus(1)
         this.view?.checkAnswerAndUpdated((view as Button).text.toString())
     }
 
+    /**
+     * verify the answer given by user
+     */
     override fun verify(text: String, answer: Int, id: Int) {
         fun success(result: Boolean) {
             if (result) {
@@ -93,6 +104,9 @@ class QuizPresenter @Inject constructor(
                 .subscribe(::success, Timber::e)
     }
 
+    /**
+     *Timer for each question
+     */
     private fun startTimer() {
 
         fun success(time: Long) {

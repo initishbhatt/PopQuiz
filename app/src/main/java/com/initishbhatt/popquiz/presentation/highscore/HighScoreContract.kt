@@ -1,6 +1,7 @@
 package com.initishbhatt.popquiz.presentation.highscore
 
 import com.initishbhatt.popquiz.data.repository.UserDataEntity
+import io.reactivex.Single
 
 /**
  * @author nitishbhatt
@@ -15,5 +16,7 @@ interface HighScoreContract {
         fun removeView()
     }
 
-    interface Service
+    interface Service {
+        fun getUsers(): Single<List<UserDataEntity>>
+    }
 }

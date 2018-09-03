@@ -1,6 +1,7 @@
 package com.initishbhatt.popquiz.presentation.profile
 
 import com.initishbhatt.popquiz.data.repository.UserDataEntity
+import com.initishbhatt.popquiz.view.binding.ProfileBindingModel
 import io.reactivex.Completable
 
 /**

@@ -7,7 +7,7 @@
 
         <variable
             name="model"
-            type="com.initishbhatt.popquiz.presentation.quiz.QuizBindingModel" />
+            type="com.initishbhatt.popquiz.view.binding.QuizBindingModel" />
 
         <variable
             name="presenter"
@@ -17,7 +17,7 @@
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/shrine"
+        android:background="@color/background"
         android:padding="@dimen/space_large">
 
         <LinearLayout
@@ -107,7 +107,7 @@
         <Button
             android:id="@+id/option_one"
             style="@style/PrimaryButton"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/space_large"
             android:hint="@string/option1"
@@ -120,7 +120,7 @@
         <Button
             android:id="@+id/option_two"
             style="@style/PrimaryButton"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/space_large"
             android:hint="@string/option2"
@@ -133,7 +133,7 @@
         <Button
             android:id="@+id/option_three"
             style="@style/PrimaryButton"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/space_large"
             android:hint="@string/option3"
@@ -145,7 +145,7 @@
         <Button
             android:id="@+id/option_four"
             style="@style/PrimaryButton"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/space_large"
             android:hint="@string/option4"

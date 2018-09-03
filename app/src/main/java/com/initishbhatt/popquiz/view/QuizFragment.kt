@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import com.initishbhatt.popquiz.R
 import com.initishbhatt.popquiz.data.repository.QuizDataEntity
 import com.initishbhatt.popquiz.databinding.FragmentQuizBinding
-import com.initishbhatt.popquiz.presentation.quiz.QuizBindingModel
+import com.initishbhatt.popquiz.view.binding.QuizBindingModel
 import com.initishbhatt.popquiz.presentation.quiz.QuizContract
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
