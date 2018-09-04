@@ -62,7 +62,7 @@ class QuizPresenterTest : BaseTest() {
 
         //then
         verify(view).hideLoading()
-        verify(view).displayQuestions(listOf(TestDataFactory.mockQuizEntity))
+        verify(view).displayQuestions(TestDataFactory.mockQuizEntity)
     }
 
     @Test
