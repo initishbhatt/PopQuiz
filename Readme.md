@@ -2,7 +2,6 @@
 # PopQuiz
 
 Sample App showcasing Kotlin, RxJava2, Dagger2, MVP
-The purpose is to lear and explore new things.
 
 ## This project uses:
 - [RxJava2](https://github.com/ReactiveX/RxJava),[RxAndroid](https://github.com/ReactiveX/RxAndroid) and [RxKotlin](https://github.com/ReactiveX/Rxkotlin)
