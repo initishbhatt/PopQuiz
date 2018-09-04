@@ -8,8 +8,9 @@ import android.view.ViewGroup
 import com.initishbhatt.popquiz.R
 import com.initishbhatt.popquiz.data.repository.QuizDataEntity
 import com.initishbhatt.popquiz.databinding.FragmentQuizBinding
-import com.initishbhatt.popquiz.view.binding.QuizBindingModel
 import com.initishbhatt.popquiz.presentation.quiz.QuizContract
+import com.initishbhatt.popquiz.util.replaceFragment
+import com.initishbhatt.popquiz.view.binding.QuizBindingModel
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
@@ -22,7 +23,7 @@ class QuizFragment : DaggerFragment(), QuizContract.View {
     lateinit var quizPresenter: QuizContract.Presenter
     private var model: QuizBindingModel = QuizBindingModel()
     private lateinit var binding: FragmentQuizBinding
-    private var answer: Int = 0
+    private var correctAnswer: Int = 0
     private var questionId = 0
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -36,7 +37,6 @@ class QuizFragment : DaggerFragment(), QuizContract.View {
         binding.model = model
         binding.presenter = quizPresenter
         quizPresenter.fetchQuestions()
-        quizPresenter.showQuestions()
     }
 
     override fun updateScore() {
@@ -44,11 +44,7 @@ class QuizFragment : DaggerFragment(), QuizContract.View {
     }
 
     override fun openHighScoreFragment() {
-        val manager = fragmentManager
-        val transaction = manager?.beginTransaction()
-        transaction?.replace(R.id.fragment, HighScoreFragment())
-        transaction?.disallowAddToBackStack()
-        transaction?.commit()
+        replaceFragment(HighScoreFragment(),R.id.fragment)
     }
 
     override fun updateTimer(time: Long) {
@@ -63,22 +59,21 @@ class QuizFragment : DaggerFragment(), QuizContract.View {
         binding.model?.questionsNotAvailable = false
     }
 
-    override fun displayQuestions(quizDataEntity: List<QuizDataEntity>) {
-        quizDataEntity.shuffled()
-                .take(1)
-                .map {
-                    binding.model?.question = it.question
-                    binding.model?.optionOne = it.optionOne
-                    binding.model?.optionTwo = it.optionTwo
-                    binding.model?.optionThree = it.optionThree
-                    binding.model?.optionFour = it.optionFour
-                    answer = it.answer
-                    questionId = it.id
+    override fun displayQuestions(quizDataEntity: QuizDataEntity) {
+        quizDataEntity
+                .apply {
+                    binding.model?.question = question
+                    binding.model?.optionOne = optionOne
+                    binding.model?.optionTwo = optionTwo
+                    binding.model?.optionThree = optionThree
+                    binding.model?.optionFour = optionFour
+                    correctAnswer = answer
+                    questionId = id
                 }
     }
 
     override fun checkAnswerAndUpdated(text: String) {
-        quizPresenter.verify(text, answer, questionId)
+        quizPresenter.verify(text, correctAnswer, questionId)
     }
 
     override fun updateScoreCorrectAnswer() {

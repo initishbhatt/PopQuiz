@@ -4,6 +4,7 @@ import android.view.View
 import android.widget.Button
 import com.initishbhatt.popquiz.data.repository.QuizDataEntity
 import com.initishbhatt.popquiz.util.SchedulerProvider
+import com.initishbhatt.popquiz.util.random
 import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
@@ -26,6 +27,7 @@ class QuizPresenter @Inject constructor(
     private var resumed: AtomicBoolean = AtomicBoolean()
     private var stopped: AtomicBoolean = AtomicBoolean()
     private var view: QuizContract.View? = null
+    private val localQuizData = mutableListOf<QuizDataEntity>()
 
 
     override fun setView(view: QuizContract.View) {
@@ -33,11 +35,14 @@ class QuizPresenter @Inject constructor(
     }
 
     override fun fetchQuestions() {
+        fun  success(){
+            showQuestions()
+        }
         view?.showLoading()
         quizService.fetchQuestionsFromServer()
                 .subscribeOn(schedulerProvider.io())
                 .observeOn(schedulerProvider.ui())
-                .subscribe()
+                .subscribe(::success,Timber::e)
                 .addToDisposable()
     }
 
@@ -54,9 +59,11 @@ class QuizPresenter @Inject constructor(
     }
 
     private fun success(quizData: List<QuizDataEntity>) {
+        val question = removeRedundantQuestions(quizData)
         view?.apply {
             hideLoading()
-            displayQuestions(quizData)
+            displayQuestions(question)
+            localQuizData.add(question)
         }
         when {
             count < 5 -> startTimer()
@@ -66,6 +73,18 @@ class QuizPresenter @Inject constructor(
                 compositeDisposable.clear()
             }
         }
+    }
+
+    private fun removeRedundantQuestions(quizData: List<QuizDataEntity>): QuizDataEntity {
+        val localQuiz = ArrayList<QuizDataEntity>(quizData)
+        if (quizData.isNotEmpty()) {
+            //remove all previous questions
+            for (item in localQuizData) {
+                localQuiz.remove(item)
+            }
+        }
+        val random = (0..localQuiz.lastIndex).random()
+        return localQuiz[random]
     }
 
     private fun error(error: Throwable) {

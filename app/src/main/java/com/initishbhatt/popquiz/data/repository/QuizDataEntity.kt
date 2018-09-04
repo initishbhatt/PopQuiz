@@ -35,6 +35,9 @@ interface QuizDataDao {
 
     @Query("SELECT * FROM QuizQuestions where id is :id")
     fun getSelectedQuestion(id: Int): Single<QuizDataEntity>
+
+    @Query("DELETE from QuizQuestions")
+    fun clearAllQuestions()
 }
 
 fun Quiz.toQuizEntity(): QuizDataEntity = QuizDataEntity(

@@ -11,7 +11,7 @@ interface QuizContract {
     interface View {
         fun showLoading()
         fun hideLoading()
-        fun displayQuestions(quizDataEntity: List<QuizDataEntity>)
+        fun displayQuestions(quizDataEntity: QuizDataEntity)
         fun updateTimer(time: Long)
         fun updateScore()
         fun checkAnswerAndUpdated(text: String)

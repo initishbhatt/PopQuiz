@@ -2,8 +2,10 @@ package com.initishbhatt.popquiz.presentation.highscore
 
 import com.initishbhatt.popquiz.data.repository.UserDataEntity
 import com.initishbhatt.popquiz.util.SchedulerProvider
+import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
+import io.reactivex.functions.BiFunction
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -24,7 +26,10 @@ class HighScorePresenter @Inject constructor(
     }
 
     override fun showScores() {
-        service.getUsersWithScores()
+        Single.zip(
+                service.getUsersWithScores(),
+                service.clearQuestions().toSingleDefault(""),
+                BiFunction { it: List<UserDataEntity>, _: String -> it })
                 .subscribeOn(schedulerProvider.io())
                 .observeOn(schedulerProvider.ui())
                 .subscribe(::success, Timber::e)

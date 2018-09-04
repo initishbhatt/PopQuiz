@@ -5,6 +5,7 @@ import android.os.Bundle
 import com.initishbhatt.popquiz.R
 import com.initishbhatt.popquiz.databinding.ActivityMainBinding
 import com.initishbhatt.popquiz.presentation.main.MainContract
+import com.initishbhatt.popquiz.util.replaceFragment
 import dagger.android.support.DaggerAppCompatActivity
 import javax.inject.Inject
 
@@ -25,11 +26,7 @@ class MainActivity : DaggerAppCompatActivity(), MainContract.View {
     }
 
     private fun openFragment() {
-        val manager = supportFragmentManager
-        val transaction = manager.beginTransaction()
-        transaction.replace(R.id.fragment, ProfileFragment())
-        transaction.disallowAddToBackStack()
-        transaction.commit()
+        replaceFragment(ProfileFragment(),R.id.fragment)
     }
 
     override fun onDestroy() {

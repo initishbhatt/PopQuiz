@@ -1,5 +1,6 @@
 package com.initishbhatt.popquiz.presentation
 
+import com.initishbhatt.popquiz.data.repository.QuizDataDao
 import com.initishbhatt.popquiz.data.repository.UserDataDao
 import com.initishbhatt.popquiz.presentation.highscore.HighScoreContract
 import com.initishbhatt.popquiz.presentation.highscore.HighScoreService
@@ -24,11 +25,12 @@ class HighScoreServiceTest : BaseTest() {
 
     private var userDataDao: UserDataDao = mock()
     private lateinit var service: HighScoreContract.Service
+    private var quizDataDao:QuizDataDao = mock()
 
     @Before
     fun setup() {
         MockitoAnnotations.initMocks(this)
-        service = HighScoreService(userDataDao)
+        service = HighScoreService(userDataDao,quizDataDao)
     }
 
     @Test

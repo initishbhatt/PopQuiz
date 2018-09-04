@@ -1,6 +1,7 @@
 package com.initishbhatt.popquiz.presentation.highscore
 
 import com.initishbhatt.popquiz.data.repository.UserDataEntity
+import io.reactivex.Completable
 import io.reactivex.Single
 
 /**
@@ -19,5 +20,6 @@ interface HighScoreContract {
 
     interface Service {
         fun getUsersWithScores(): Single<List<UserDataEntity>>
+        fun clearQuestions(): Completable
     }
 }

@@ -8,8 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import com.initishbhatt.popquiz.R
 import com.initishbhatt.popquiz.databinding.FragmentProflieBinding
-import com.initishbhatt.popquiz.view.binding.ProfileBindingModel
 import com.initishbhatt.popquiz.presentation.profile.ProfileContract
+import com.initishbhatt.popquiz.util.replaceFragment
+import com.initishbhatt.popquiz.view.binding.ProfileBindingModel
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
@@ -37,11 +38,7 @@ class ProfileFragment : DaggerFragment(), ProfileContract.View {
 
 
     override fun openQuizFragment() {
-        val manager = fragmentManager
-        val transaction = manager?.beginTransaction()
-        transaction?.replace(R.id.fragment, QuizFragment())
-        transaction?.disallowAddToBackStack()
-        transaction?.commit()
+        replaceFragment(QuizFragment(),R.id.fragment)
     }
 
     override fun openHowToPlayDialog() {
@@ -52,11 +49,7 @@ class ProfileFragment : DaggerFragment(), ProfileContract.View {
     }
 
     override fun openHighScoreFragment() {
-        val manager = fragmentManager
-        val transaction = manager?.beginTransaction()
-        transaction?.replace(R.id.fragment, HighScoreFragment())
-        transaction?.disallowAddToBackStack()
-        transaction?.commit()
+        replaceFragment(HighScoreFragment(),R.id.fragment)
     }
 
     override fun onDestroy() {
