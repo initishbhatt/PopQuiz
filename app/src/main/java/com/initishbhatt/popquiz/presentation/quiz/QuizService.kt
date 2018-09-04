@@ -18,8 +18,7 @@ class QuizService @Inject constructor(
         private val quizApi: QuizApi,
         private val quizDataDao: QuizDataDao,
         private val userDataDao: UserDataDao,
-        private val prefStore: PrefStore,
-        private val schedulerProvider: SchedulerProvider
+        private val prefStore: PrefStore
 ) : QuizContract.Service {
 
     override fun fetchQuestionsFromServer(): Completable =
@@ -30,13 +29,9 @@ class QuizService @Inject constructor(
                             quizDataDao.storeQuizQuestions(it.toQuizEntity())
                         }
                     }.toCompletable()
-                    .subscribeOn(schedulerProvider.io())
-                    .observeOn(schedulerProvider.ui())
 
     override fun getQuizQuestions(): Single<List<QuizDataEntity>> =
             quizDataDao.getQuizQuestions()
-                    .subscribeOn(schedulerProvider.io())
-                    .observeOn(schedulerProvider.ui())
 
     override fun verifyAnswer(text: String, answer: Int, id: Int): Single<Boolean> {
         return quizDataDao.getSelectedQuestion(id)
@@ -51,13 +46,11 @@ class QuizService @Inject constructor(
                     }
                     result
                 }
-                .subscribeOn(schedulerProvider.io())
-                .observeOn(schedulerProvider.ui())
     }
 
     override fun updateUserScore(score: Int?): Completable =
             Completable.fromCallable {
                 userDataDao.updateUserScore(score!!, prefStore.getCurrentUserId())
-            }.subscribeOn(schedulerProvider.io())
+            }
 
 }

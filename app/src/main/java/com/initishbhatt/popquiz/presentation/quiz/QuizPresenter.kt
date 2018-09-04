@@ -16,7 +16,7 @@ import javax.inject.Inject
  * @author nitishbhatt
  */
 class QuizPresenter @Inject constructor(
-        private val quizService: QuizService,
+        private val quizService: QuizContract.Service,
         private val schedulerProvider: SchedulerProvider
 ) : QuizContract.Presenter {
 
@@ -35,7 +35,10 @@ class QuizPresenter @Inject constructor(
     override fun fetchQuestions() {
         view?.showLoading()
         quizService.fetchQuestionsFromServer()
+                .subscribeOn(schedulerProvider.io())
+                .observeOn(schedulerProvider.ui())
                 .subscribe()
+                .addToDisposable()
     }
 
     /**
@@ -45,6 +48,8 @@ class QuizPresenter @Inject constructor(
         compositeDisposable.clear()
         quizService.getQuizQuestions()
                 .map { it }
+                .subscribeOn(schedulerProvider.io())
+                .observeOn(schedulerProvider.ui())
                 .subscribe(::success, ::error)
     }
 
@@ -76,6 +81,8 @@ class QuizPresenter @Inject constructor(
             view?.openHighScoreFragment()
         }
         quizService.updateUserScore(score)
+                .subscribeOn(schedulerProvider.io())
+                .observeOn(schedulerProvider.ui())
                 .subscribe(::success, Timber::e)
     }
 
@@ -101,6 +108,8 @@ class QuizPresenter @Inject constructor(
         }
 
         quizService.verifyAnswer(text, answer, id)
+                .subscribeOn(schedulerProvider.io())
+                .observeOn(schedulerProvider.ui())
                 .subscribe(::success, Timber::e)
     }
 
