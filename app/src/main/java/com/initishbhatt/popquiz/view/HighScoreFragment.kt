@@ -37,6 +37,7 @@ class HighScoreFragment : DaggerFragment(), HighScoreContract.View {
         binding.highScoreRv.apply {
             layoutManager = LinearLayoutManager(context)
         }
+        highScorePresenter.showScores()
     }
 
     override fun onDestroy() {

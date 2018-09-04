@@ -14,9 +14,10 @@ interface HighScoreContract {
     interface Presenter {
         fun setView(view: View)
         fun removeView()
+        fun showScores()
     }
 
     interface Service {
-        fun getUsers(): Single<List<UserDataEntity>>
+        fun getUsersWithScores(): Single<List<UserDataEntity>>
     }
 }
