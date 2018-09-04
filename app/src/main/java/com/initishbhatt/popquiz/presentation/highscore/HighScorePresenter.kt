@@ -37,7 +37,7 @@ class HighScorePresenter @Inject constructor(
     }
 
     private fun success(user: List<UserDataEntity>) {
-        val highScorers = user.sortedBy { it.userScore }
+        val highScorers = user.sortedByDescending { it.userScore }
                 .take(5)
         view?.showHighScores(highScorers)
     }

@@ -27,7 +27,7 @@ class HighScoreItemAdapter(
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun bind(userDataEntity: UserDataEntity) = with(itemView) {
-            name_label.text = userDataEntity.userName
+            name_label.text = userDataEntity.userName.toUpperCase()
             score_label.text = userDataEntity.userScore.toString()
         }
     }

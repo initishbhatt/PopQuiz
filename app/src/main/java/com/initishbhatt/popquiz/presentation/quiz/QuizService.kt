@@ -38,10 +38,10 @@ class QuizService @Inject constructor(
                 .map {
                     var result = false
                     when (answer) {
-                        0 -> if (text == it.optionOne) result = true
-                        1 -> if (text == it.optionTwo) result = true
-                        2 -> if (text == it.optionThree) result = true
-                        3 -> if (text == it.optionFour) result = true
+                        1 -> if (text == it.optionOne) result = true
+                        2 -> if (text == it.optionTwo) result = true
+                        3 -> if (text == it.optionThree) result = true
+                        4 -> if (text == it.optionFour) result = true
                         else -> result = false
                     }
                     result

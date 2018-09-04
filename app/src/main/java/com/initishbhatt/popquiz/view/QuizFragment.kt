@@ -72,7 +72,7 @@ class QuizFragment : DaggerFragment(), QuizContract.View {
                 }
     }
 
-    override fun checkAnswerAndUpdated(text: String) {
+    override fun checkAnswerAndUpdate(text: String) {
         quizPresenter.verify(text, correctAnswer, questionId)
     }
 

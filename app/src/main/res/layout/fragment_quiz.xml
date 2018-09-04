@@ -14,147 +14,152 @@
             type="com.initishbhatt.popquiz.presentation.quiz.QuizContract.Presenter" />
     </data>
 
-    <android.support.constraint.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/background"
-        android:padding="@dimen/space_large">
-
-        <LinearLayout
-            android:id="@+id/score_container"
-            android:layout_width="@dimen/container_width"
+        android:fillViewport="true">
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_button"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:padding="@dimen/space_large"
-            android:visibility="@{!model.questionsNotAvailable}">
+            android:background="@color/background"
+            android:padding="@dimen/space_large">
+
+            <LinearLayout
+                android:id="@+id/score_container"
+                android:layout_width="@dimen/container_width"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_button"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="@dimen/space_large"
+                android:visibility="@{!model.questionsNotAvailable}">
+
+                <TextView
+                    android:id="@+id/score_label"
+                    style="@style/PrimaryText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/score" />
+
+                <TextView
+                    android:id="@+id/score"
+                    style="@style/PrimaryText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/max_score"
+                    android:text="@{Integer.toString(model.score)}" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/timer_container"
+                android:layout_width="@dimen/container_width"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_button"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="@dimen/space_large"
+                android:visibility="@{!model.questionsNotAvailable}"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <TextView
+                    style="@style/PrimaryText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/time" />
+
+                <TextView
+                    android:id="@+id/time"
+                    style="@style/PrimaryText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/ten"
+                    android:text="@{Integer.toString(model.timer)}" />
+            </LinearLayout>
+
+            <View
+                android:id="@+id/view"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
+                android:background="@color/black"
+                android:visibility="@{!model.questionsNotAvailable}"
+                app:layout_constraintTop_toBottomOf="@id/timer_container" />
+
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="@{model.questionsNotAvailable}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/score_label"
+                android:id="@+id/question"
                 style="@style/PrimaryText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/score" />
+                android:layout_marginTop="@dimen/space_xlarge"
+                android:text="@{model.question}"
+                android:visibility="@{!model.questionsNotAvailable}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/view"
+                tools:text="@string/dummy_question" />
 
-            <TextView
-                android:id="@+id/score"
-                style="@style/PrimaryText"
-                android:layout_width="wrap_content"
+            <Button
+                android:id="@+id/option_one"
+                style="@style/PrimaryButton"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/max_score"
-                android:text="@{Integer.toString(model.score)}" />
-        </LinearLayout>
+                android:layout_marginTop="@dimen/space_large"
+                android:hint="@string/option1"
+                android:onClick="@{(view) -> presenter.onOptionClick(view)}"
+                android:text="@{model.optionOne}"
+                android:visibility="@{!model.questionsNotAvailable}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/question" />
 
-        <LinearLayout
-            android:id="@+id/timer_container"
-            android:layout_width="@dimen/container_width"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_button"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:padding="@dimen/space_large"
-            android:visibility="@{!model.questionsNotAvailable}"
-            app:layout_constraintEnd_toEndOf="parent">
-
-            <TextView
-                style="@style/PrimaryText"
-                android:layout_width="wrap_content"
+            <Button
+                android:id="@+id/option_two"
+                style="@style/PrimaryButton"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/time" />
+                android:layout_marginTop="@dimen/space_large"
+                android:hint="@string/option2"
+                android:onClick="@{(view) -> presenter.onOptionClick(view)}"
+                android:text="@{model.optionTwo}"
+                android:visibility="@{!model.questionsNotAvailable}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/option_one" />
 
-            <TextView
-                android:id="@+id/time"
-                style="@style/PrimaryText"
-                android:layout_width="wrap_content"
+            <Button
+                android:id="@+id/option_three"
+                style="@style/PrimaryButton"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/ten"
-                android:text="@{Integer.toString(model.timer)}" />
-        </LinearLayout>
+                android:layout_marginTop="@dimen/space_large"
+                android:hint="@string/option3"
+                android:onClick="@{(view) -> presenter.onOptionClick(view)}"
+                android:text="@{model.optionThree}"
+                android:visibility="@{!model.questionsNotAvailable}"
+                app:layout_constraintTop_toBottomOf="@+id/option_two" />
 
-        <View
-            android:id="@+id/view"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginTop="8dp"
-            android:background="@color/black"
-            android:visibility="@{!model.questionsNotAvailable}"
-            app:layout_constraintTop_toBottomOf="@id/timer_container" />
-
-        <ProgressBar
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="@{model.questionsNotAvailable}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/question"
-            style="@style/PrimaryText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_xlarge"
-            android:text="@{model.question}"
-            android:visibility="@{!model.questionsNotAvailable}"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/view"
-            tools:text="@string/dummy_question" />
-
-        <Button
-            android:id="@+id/option_one"
-            style="@style/PrimaryButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_large"
-            android:hint="@string/option1"
-            android:onClick="@{(view) -> presenter.onOptionClick(view)}"
-            android:text="@{model.optionOne}"
-            android:visibility="@{!model.questionsNotAvailable}"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/question" />
-
-        <Button
-            android:id="@+id/option_two"
-            style="@style/PrimaryButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_large"
-            android:hint="@string/option2"
-            android:onClick="@{(view) -> presenter.onOptionClick(view)}"
-            android:text="@{model.optionTwo}"
-            android:visibility="@{!model.questionsNotAvailable}"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/option_one" />
-
-        <Button
-            android:id="@+id/option_three"
-            style="@style/PrimaryButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_large"
-            android:hint="@string/option3"
-            android:onClick="@{(view) -> presenter.onOptionClick(view)}"
-            android:text="@{model.optionThree}"
-            android:visibility="@{!model.questionsNotAvailable}"
-            app:layout_constraintTop_toBottomOf="@+id/option_two" />
-
-        <Button
-            android:id="@+id/option_four"
-            style="@style/PrimaryButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_large"
-            android:hint="@string/option4"
-            android:onClick="@{(view) -> presenter.onOptionClick(view)}"
-            android:text="@{model.optionFour}"
-            android:visibility="@{!model.questionsNotAvailable}"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/option_three" />
+            <Button
+                android:id="@+id/option_four"
+                style="@style/PrimaryButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_large"
+                android:hint="@string/option4"
+                android:onClick="@{(view) -> presenter.onOptionClick(view)}"
+                android:text="@{model.optionFour}"
+                android:visibility="@{!model.questionsNotAvailable}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/option_three" />
 
 
-    </android.support.constraint.ConstraintLayout>
+        </android.support.constraint.ConstraintLayout>
+    </ScrollView>
 </layout>

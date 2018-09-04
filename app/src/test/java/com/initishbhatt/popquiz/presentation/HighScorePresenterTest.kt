@@ -9,6 +9,7 @@ import com.nhaarman.mockito_kotlin.mock
 import com.nhaarman.mockito_kotlin.verify
 import com.nhaarman.mockito_kotlin.verifyZeroInteractions
 import com.nhaarman.mockito_kotlin.whenever
+import io.reactivex.Completable
 import io.reactivex.Single
 import org.junit.Before
 import org.junit.Rule
@@ -42,6 +43,7 @@ class HighScorePresenterTest : BaseTest() {
     fun `test user fetch success`() {
         //given
         whenever(service.getUsersWithScores()).thenReturn(Single.just(listOf(TestDataFactory.mockUserEntity)))
+        whenever(service.clearQuestions()).thenReturn(Completable.complete())
 
         //when
         presenter.showScores()
@@ -55,6 +57,7 @@ class HighScorePresenterTest : BaseTest() {
     fun `test user fetch failed`() {
         //given
         whenever(service.getUsersWithScores()).thenReturn(Single.error(Throwable()))
+        whenever(service.clearQuestions()).thenReturn(Completable.complete())
 
         //when
         presenter.showScores()

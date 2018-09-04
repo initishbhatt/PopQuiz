@@ -26,6 +26,7 @@ class ProfilePresenterTest : BaseTest() {
     @JvmField
     @Rule
     val overrideSchedulersRule = RxSchedulersOverrideRule()
+
     private lateinit var presenter: ProfileContract.Presenter
     private var service: ProfileContract.Service = mock()
     private var view: ProfileContract.View = mock()
