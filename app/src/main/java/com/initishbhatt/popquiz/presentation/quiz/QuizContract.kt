@@ -14,7 +14,7 @@ interface QuizContract {
         fun displayQuestions(quizDataEntity: QuizDataEntity)
         fun updateTimer(time: Long)
         fun updateScore()
-        fun checkAnswerAndUpdated(text: String)
+        fun checkAnswerAndUpdate(text: String)
         fun updateScoreCorrectAnswer()
         fun updateScoreWrongAnswer()
         fun openHighScoreFragment()

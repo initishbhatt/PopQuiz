@@ -111,7 +111,7 @@ class QuizPresenter @Inject constructor(
     override fun onOptionClick(view: View) {
         stopTimer()
         count = count.plus(1)
-        this.view?.checkAnswerAndUpdated((view as Button).text.toString())
+        this.view?.checkAnswerAndUpdate((view as Button).text.toString())
     }
 
     /**
@@ -139,6 +139,7 @@ class QuizPresenter @Inject constructor(
 
         fun success(time: Long) {
             if (time <= 10) view?.updateTimer(time)
+            else showQuestions()
         }
         resumed.set(true)
         stopped.set(false)
