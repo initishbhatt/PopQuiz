@@ -10,6 +10,7 @@ import com.initishbhatt.popquiz.R
 import com.initishbhatt.popquiz.databinding.FragmentProflieBinding
 import com.initishbhatt.popquiz.presentation.profile.ProfileContract
 import com.initishbhatt.popquiz.util.replaceFragment
+import com.initishbhatt.popquiz.util.replaceFragmentBackStack
 import com.initishbhatt.popquiz.view.binding.ProfileBindingModel
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
@@ -38,7 +39,7 @@ class ProfileFragment : DaggerFragment(), ProfileContract.View {
 
 
     override fun openQuizFragment() {
-        replaceFragment(QuizFragment(),R.id.fragment)
+        replaceFragmentBackStack(QuizFragment(),R.id.fragment)
     }
 
     override fun openHowToPlayDialog() {
