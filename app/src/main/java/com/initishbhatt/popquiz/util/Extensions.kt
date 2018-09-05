@@ -46,3 +46,11 @@ fun DaggerFragment.replaceFragment(fragment: Fragment, @IdRes frameId: Int) {
         replace(frameId, fragment)
     }
 }
+
+fun DaggerFragment.replaceFragmentBackStack(fragment: Fragment, @IdRes frameId: Int) {
+    fragmentManager?.inTransaction {
+        replace(frameId, fragment)
+        addToBackStack("")
+    }
+}
+
