@@ -4,11 +4,11 @@ import com.initishbhatt.popquiz.data.QuizApi
 import com.initishbhatt.popquiz.data.repository.QuizDataDao
 import com.initishbhatt.popquiz.data.repository.QuizDataEntity
 import com.initishbhatt.popquiz.data.repository.UserDataDao
+import com.initishbhatt.popquiz.data.repository.UserDataEntity
 import com.initishbhatt.popquiz.data.repository.toQuizEntity
-import com.initishbhatt.popquiz.data.store.PrefStore
-import com.initishbhatt.popquiz.util.SchedulerProvider
 import io.reactivex.Completable
 import io.reactivex.Single
+import timber.log.Timber
 import javax.inject.Inject
 
 /**
@@ -17,8 +17,7 @@ import javax.inject.Inject
 class QuizService @Inject constructor(
         private val quizApi: QuizApi,
         private val quizDataDao: QuizDataDao,
-        private val userDataDao: UserDataDao,
-        private val prefStore: PrefStore
+        private val userDataDao: UserDataDao
 ) : QuizContract.Service {
 
     override fun fetchQuestionsFromServer(): Completable =
@@ -50,7 +49,10 @@ class QuizService @Inject constructor(
 
     override fun updateUserScore(score: Int?): Completable =
             Completable.fromCallable {
-                userDataDao.updateUserScore(score!!, prefStore.getCurrentUserId())
+                fun success(userDataEntity: UserDataEntity) {
+                    userDataDao.updateUserScore(score!!, userDataEntity.userId)
+                }
+                userDataDao.getAllUsers().map { it.last() }.subscribe(::success, Timber::e)
             }
 
 }

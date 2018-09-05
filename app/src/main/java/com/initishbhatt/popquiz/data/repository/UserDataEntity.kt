@@ -13,8 +13,8 @@ import io.reactivex.Single
  */
 @Entity(tableName = "User")
 data class UserDataEntity(
-        @PrimaryKey
-        var userId: String,
+        @PrimaryKey(autoGenerate = true)
+        var userId: Int = 0,
         var userName: String,
         var userAge: String,
         var userGender: String,
@@ -33,10 +33,10 @@ interface UserDataDao {
     fun insertUserData(userDataEntity: UserDataEntity)
 
     @Query("UPDATE User SET userScore=:score WHERE userId=:userId")
-    fun updateUserScore(score: Int,userId: String)
+    fun updateUserScore(score: Int, userId: Int)
 }
 
-fun ProfileBindingModel.toUserEntity(userId: String) = UserDataEntity(userId = userId,
+fun ProfileBindingModel.toUserEntity() = UserDataEntity(
         userName = name,
         userAge = age,
         userGender = gender)

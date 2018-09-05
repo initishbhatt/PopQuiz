@@ -15,7 +15,6 @@ object TestDataFactory {
             userGender = "male",
             userAge = "26",
             userName = "anyone",
-            userId = UUID.randomUUID().toString(),
             userScore = 100
     )
     val model = ProfileBindingModel().apply {
@@ -46,7 +45,7 @@ object TestDataFactory {
 
 }
 
-fun ProfileBindingModel.toUserEntity(userId: String) = UserDataEntity(userId = userId,
+fun ProfileBindingModel.toUserEntity() = UserDataEntity(
         userName = name,
         userAge = age,
         userGender = gender)

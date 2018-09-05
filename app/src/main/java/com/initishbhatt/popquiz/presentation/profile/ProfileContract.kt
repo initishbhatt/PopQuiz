@@ -24,6 +24,5 @@ interface ProfileContract {
 
     interface Service {
         fun storeUserData(userData: UserDataEntity): Completable
-        fun setUserId(userId: String)
     }
 }
