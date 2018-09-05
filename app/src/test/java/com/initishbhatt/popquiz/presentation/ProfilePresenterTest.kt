@@ -63,19 +63,18 @@ class ProfilePresenterTest : BaseTest() {
     @Test
     fun `test user data stored on play click`() {
         //given
-        whenever(service.storeUserData(TestDataFactory.model.toUserEntity("1"))).thenReturn(Completable.complete())
+        whenever(service.storeUserData(TestDataFactory.model.toUserEntity())).thenReturn(Completable.complete())
         //when
         presenter.onPlayClick(TestDataFactory.model)
         testScheduler.triggerActions()
         //then
         verify(view).openQuizFragment()
-        verify(service).setUserId("")
     }
 
     @Test
     fun `test user data not stored on play click`() {
         //given
-        whenever(service.storeUserData(TestDataFactory.mockUserEntity)).thenReturn(Completable.error(Throwable()))
+        whenever(service.storeUserData(TestDataFactory.model.toUserEntity())).thenReturn(Completable.error(Throwable()))
         //when
         presenter.onPlayClick(TestDataFactory.model)
         testScheduler.triggerActions()

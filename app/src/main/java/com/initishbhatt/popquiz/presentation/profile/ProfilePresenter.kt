@@ -6,7 +6,6 @@ import com.initishbhatt.popquiz.view.binding.ProfileBindingModel
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import timber.log.Timber
-import java.util.UUID
 import javax.inject.Inject
 
 /**
@@ -23,17 +22,15 @@ class ProfilePresenter @Inject constructor(
     }
 
     override fun onPlayClick(model: ProfileBindingModel) {
-        val userId = UUID.randomUUID().toString()
 
         fun onSuccess() {
-            service.setUserId(userId)
             view?.openQuizFragment()
         }
 
         fun onError(error: Throwable) {
             Timber.e(error)
         }
-        service.storeUserData(model.toUserEntity(userId))
+        service.storeUserData(model.toUserEntity())
                 .subscribeOn(schedulerProvider.io())
                 .observeOn(schedulerProvider.ui())
                 .subscribe(::onSuccess, ::onError)

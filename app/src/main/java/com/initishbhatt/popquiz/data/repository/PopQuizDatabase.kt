@@ -7,7 +7,7 @@ import android.arch.persistence.room.RoomDatabase
  * @author nitishbhatt
  */
 @Database(entities = [UserDataEntity::class,
-    QuizDataEntity::class], version = 2)
+    QuizDataEntity::class], version = 3)
 abstract class PopQuizDatabase : RoomDatabase() {
     abstract fun userDataDao(): UserDataDao
     abstract fun quizDataDao(): QuizDataDao

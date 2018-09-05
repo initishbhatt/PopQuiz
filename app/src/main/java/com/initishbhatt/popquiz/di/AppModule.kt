@@ -2,12 +2,10 @@ package com.initishbhatt.popquiz.di
 
 import android.arch.persistence.room.Room
 import android.content.Context
-import android.content.SharedPreferences
 import com.initishbhatt.popquiz.PopQuizApp
 import com.initishbhatt.popquiz.data.repository.PopQuizDatabase
 import com.initishbhatt.popquiz.data.repository.QuizDataDao
 import com.initishbhatt.popquiz.data.repository.UserDataDao
-import com.initishbhatt.popquiz.data.store.PrefStore
 import com.initishbhatt.popquiz.presentation.profile.ProfileContract
 import com.initishbhatt.popquiz.presentation.profile.ProfileService
 import com.initishbhatt.popquiz.util.SchedulerProvider
@@ -30,10 +28,9 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun provideProfileService(userDataDao: UserDataDao,
-                              store: PrefStore
+    fun provideProfileService(userDataDao: UserDataDao
     ): ProfileContract.Service {
-        return ProfileService(userDataDao, store)
+        return ProfileService(userDataDao)
     }
 
     @Singleton
@@ -55,17 +52,5 @@ class AppModule {
     @Provides
     fun provideQuizDataDao(db: PopQuizDatabase): QuizDataDao {
         return db.quizDataDao()
-    }
-
-    @Provides
-    @Singleton
-    fun provideStore(sharedPreferences: SharedPreferences): PrefStore {
-        return PrefStore(sharedPreferences)
-    }
-
-    @Provides
-    @Singleton
-    fun providePreferences(context: Context): SharedPreferences {
-        return context.getSharedPreferences("popQuiz", Context.MODE_PRIVATE)
     }
 }

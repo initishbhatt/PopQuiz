@@ -3,7 +3,6 @@ package com.initishbhatt.popquiz.presentation
 import com.initishbhatt.popquiz.data.QuizApi
 import com.initishbhatt.popquiz.data.repository.QuizDataDao
 import com.initishbhatt.popquiz.data.repository.UserDataDao
-import com.initishbhatt.popquiz.data.store.PrefStore
 import com.initishbhatt.popquiz.presentation.quiz.QuizContract
 import com.initishbhatt.popquiz.presentation.quiz.QuizService
 import com.initishbhatt.popquiz.util.BaseTest
@@ -26,24 +25,23 @@ class QuizServiceTest : BaseTest() {
     private var quizApi: QuizApi = mock()
     private var quizDataDao: QuizDataDao = mock()
     private var userDataDao: UserDataDao = mock()
-    private var prefStore: PrefStore = mock()
     private lateinit var service: QuizContract.Service
 
     @Before
     fun setup() {
-        service = QuizService(quizApi, quizDataDao, userDataDao, prefStore)
+        service = QuizService(quizApi, quizDataDao, userDataDao)
     }
 
     @Test
     fun `test user scores updated`() {
         //given
-        whenever(prefStore.getCurrentUserId()).thenReturn("id")
+        whenever(userDataDao.getAllUsers()).thenReturn(Single.just(listOf(TestDataFactory.mockUserEntity)))
         val observer = TestObserver.create<Any>()
         //when
         service.updateUserScore(1).subscribe(observer)
 
         //then
-        verify(userDataDao).updateUserScore(1, prefStore.getCurrentUserId())
+        verify(userDataDao).updateUserScore(1, 0)
         observer.awaitTerminalEvent()
         observer.assertNoErrors()
         observer.assertComplete()

@@ -10,6 +10,7 @@ import com.nhaarman.mockito_kotlin.verify
 import com.nhaarman.mockito_kotlin.verifyZeroInteractions
 import com.nhaarman.mockito_kotlin.whenever
 import io.reactivex.Completable
+import io.reactivex.Observable
 import io.reactivex.Single
 import org.junit.Before
 import org.junit.Rule
@@ -17,6 +18,11 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.MockitoAnnotations
 import org.mockito.junit.MockitoJUnitRunner
+import timber.log.Timber
+import java.util.concurrent.TimeUnit
+import io.reactivex.plugins.RxJavaPlugins
+
+
 
 /**
  * @author nitishbhatt
@@ -55,7 +61,7 @@ class QuizPresenterTest : BaseTest() {
     fun `test questions are shown`() {
         //given
         whenever(service.getQuizQuestions()).thenReturn(Single.just(listOf(TestDataFactory.mockQuizEntity)))
-
+        RxJavaPlugins.setComputationSchedulerHandler { ignore -> testScheduler }
         //when
         presenter.showQuestions()
         testScheduler.triggerActions()

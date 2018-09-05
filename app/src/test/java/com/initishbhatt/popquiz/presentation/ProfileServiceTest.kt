@@ -1,7 +1,6 @@
 package com.initishbhatt.popquiz.presentation
 
 import com.initishbhatt.popquiz.data.repository.UserDataDao
-import com.initishbhatt.popquiz.data.store.PrefStore
 import com.initishbhatt.popquiz.presentation.profile.ProfileContract
 import com.initishbhatt.popquiz.presentation.profile.ProfileService
 import com.initishbhatt.popquiz.util.BaseTest
@@ -20,23 +19,13 @@ import org.mockito.junit.MockitoJUnitRunner
 @RunWith(MockitoJUnitRunner::class)
 class ProfileServiceTest : BaseTest() {
     private var userDataDao: UserDataDao = mock()
-    private var prefStore: PrefStore = mock()
     private lateinit var service: ProfileContract.Service
 
     @Before
     fun setup() {
-        service = ProfileService(userDataDao, prefStore)
+        service = ProfileService(userDataDao)
     }
 
-    @Test
-    fun `test user id is set`() {
-        //given
-
-        //when
-        service.setUserId("id")
-        //then
-        verify(prefStore).setUserId("id")
-    }
 
     @Test
     fun `test user data stored`() {
