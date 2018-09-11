@@ -1,7 +1,7 @@
 
 # PopQuiz
 
-Sample App showcasing Kotlin, RxJava2, Dagger2, MVP
+Sample App showcasing Kotlin, RxJava2, Dagger2, MVP with clean Architecture
 
 ## The approach(Clean Architecture + MVP)
 The project is split into the following packages:
